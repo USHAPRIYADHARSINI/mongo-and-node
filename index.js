@@ -7,7 +7,8 @@ dotenv.config();
 
 const app = express();
 
-const PORT = 4000; // denoting port number
+// const PORT = 4000; // denoting port number
+const PORT = process.env.PORT;
 
 const movies = [
     { "id" : "99",
