@@ -4,6 +4,10 @@ import express from "express"; //new way to import
 import { MongoClient } from "mongodb";
 import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 import moviesRouter from "./routes/movies.route.js" ;
+import usersRouter from "./routes/users.route.js" ;
+import companiesRouter from "./routes/companies.route.js" ;
+import cors from 'cors';
+
 
 dotenv.config();
 
@@ -20,12 +24,20 @@ await client.connect(); // call button
 console.log("Mongo is connected ✌️😊");
 
 app.use(express.json());
+app.use(cors());
 
 app.get("/", function (request, response) {
   response.send("🙋‍♂️, 🌏 🎊✨🤩");
 });
 
+
+//routing setup
+
 app.use ("/movies", moviesRouter);
+app.use ("/users", usersRouter);
+app.use ("/companies", companiesRouter);
+
+
 
 // listen is given to run the file
 app.listen(PORT, () => console.log(`The server started in: ${PORT} ✨✨`));
@@ -68,3 +80,5 @@ app.listen(PORT, () => console.log(`The server started in: ${PORT} ✨✨`));
 // })
 
 export { client };
+
+
